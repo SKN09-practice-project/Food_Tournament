@@ -4,6 +4,7 @@ import base64
 import json
 from math import ceil
 
+# 이미지 base64 변환 함수
 def image_to_base64(path):
     try:
         with open(path, "rb") as img_file:
@@ -11,6 +12,7 @@ def image_to_base64(path):
     except:
         return None
 
+# 랭킹 데이터 불러오기
 def load_ranking_from_file(filename="ranking_data.json"):
     try:
         with open(filename, "r", encoding="utf-8") as f:
@@ -18,21 +20,23 @@ def load_ranking_from_file(filename="ranking_data.json"):
     except FileNotFoundError:
         return {}
 
+# 📌 타이틀 + 홈 버튼
 col_title, col_home = st.columns([6, 1])
 with col_title:
     st.title("🏆 음식 인기 순위표")
 with col_home:
     st.page_link("app.py", label=" ", icon="🏠", use_container_width=True)
 
-
+# 데이터 로드
 ranking = load_ranking_from_file()
-
 if not ranking:
     st.warning("랭킹 데이터가 없습니다. 게임을 먼저 진행해 주세요.")
     st.stop()
 
+# 정렬
 sorted_items = sorted(ranking.items(), key=lambda x: x[1]["count"], reverse=True)
 
+# 페이지네이션 설정
 ITEMS_PER_PAGE = 5
 total_items = len(sorted_items)
 total_pages = ceil(total_items / ITEMS_PER_PAGE)
@@ -44,13 +48,15 @@ page = st.session_state.current_page
 start = (page - 1) * ITEMS_PER_PAGE
 end = start + ITEMS_PER_PAGE
 paginated_items = sorted_items[start:end]
-
 total_count = sum([v["count"] for _, v in ranking.items()])
+
 start_rank = start + 1
 end_rank = min(end, total_items)
 
+# 순위 표시
 st.markdown(f"### 🧾 음식 순위 ({start_rank}위 ~ {end_rank}위)")
 
+# 테이블 HTML
 table_html = f"""
 <style>
 table {{
@@ -89,7 +95,6 @@ for i, (name, data) in enumerate(paginated_items, start=start + 1):
       </div>
     </div>
     """
-
     table_html += f"""
     <tr>
         <td>{i}</td>
@@ -104,14 +109,17 @@ table_html += "</table>"
 
 components.html(table_html, height=650, scrolling=True)
 
+# 페이지 이동 버튼
 col1, col_spacer, col2 = st.columns([1, 5, 1])
 with col1:
     st.button("⬅️ 이전", disabled=(page <= 1), on_click=lambda: st.session_state.__setitem__('current_page', page - 1))
 with col2:
     st.button("다음 ➡️", disabled=(page >= total_pages), on_click=lambda: st.session_state.__setitem__('current_page', page + 1))
 
+# 페이지 번호 표시
 st.markdown(f"<div style='text-align: center; color: gray; font-size: 14px;'>페이지 {page} / {total_pages}</div>", unsafe_allow_html=True)
 
+# 홈으로 돌아가기
 if st.button("🏠 홈으로 가기"):
     for key in list(st.session_state.keys()):
         del st.session_state[key]
