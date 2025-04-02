@@ -1,0 +1,18 @@
+{
+  "떡볶이": {
+    "count": 20,
+    "image_url": "./img/떡볶이.png"
+  },
+  "치킨": {
+    "count": 3,
+    "image_url": "./img/치킨.png"
+  },
+  "피자": {
+    "count": 1,
+    "image_url": "./img/피자.png"
+  },
+  "삼겹살": {
+    "count": 5,
+    "image_url": "./img/삼겹살.png"
+  }
+}
