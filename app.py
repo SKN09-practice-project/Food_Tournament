@@ -1,5 +1,8 @@
 import streamlit as st
 
+for key in list(st.session_state.keys()):
+    del st.session_state[key]
+
 st.set_page_config(page_title="🍽️ 음식 이상형 월드컵", page_icon="🥘")
 
 st.title("🏠 음식 월드컵 시작하기")
@@ -14,3 +17,5 @@ if st.button("게임 시작"):
         "image_url": "./img/떡볶이.png"
     }  # 임시 결과
     st.switch_page("pages/game_result.py")
+
+    

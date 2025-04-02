@@ -3,7 +3,6 @@ from PIL import Image
 from pathlib import Path
 import json
 
-
 def load_ranking_from_file(filename="ranking_data.json"):
     try:
         with open(filename, "r", encoding="utf-8") as f:

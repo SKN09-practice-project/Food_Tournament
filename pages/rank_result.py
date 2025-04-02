@@ -111,3 +111,8 @@ with col2:
     st.button("다음 ➡️", disabled=(page >= total_pages), on_click=lambda: st.session_state.__setitem__('current_page', page + 1))
 
 st.markdown(f"<div style='text-align: center; color: gray; font-size: 14px;'>페이지 {page} / {total_pages}</div>", unsafe_allow_html=True)
+
+if st.button("🏠 홈으로 가기"):
+    for key in list(st.session_state.keys()):
+        del st.session_state[key]
+    st.switch_page("app.py")
