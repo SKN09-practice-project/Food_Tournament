@@ -2,26 +2,23 @@ import streamlit as st
 import random
 from game_logic import create_brackets, match_candidates
 import time 
+import os
 
-# 예시 이미지들 
+
+# food_images 폴더 경로
+image_folder = "food_images"
+
+# 이미지 파일 목록 가져오기
+image_files = [f for f in os.listdir(image_folder) if f.endswith(".jpg")]
+
+# candidates 리스트 생성
 candidates = [
-    {"name": "피자", "image": "https://cdn.pixabay.com/photo/2023/07/20/19/42/flower-8140215_1280.jpg"},
-    {"name": "버거", "image": "https://images.pexels.com/photos/68507/spring-flowers-flowers-collage-floral-68507.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"},
-    {"name": "1", "image": "https://cdn.pixabay.com/photo/2023/07/20/19/42/flower-8140215_1280.jpg"},
-    {"name": "2", "image": "https://images.pexels.com/photos/68507/spring-flowers-flowers-collage-floral-68507.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"},
-    {"name": "3", "image": "https://cdn.pixabay.com/photo/2023/07/20/19/42/flower-8140215_1280.jpg"},
-    {"name": "4", "image": "https://images.pexels.com/photos/68507/spring-flowers-flowers-collage-floral-68507.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"},
-    {"name": "5", "image": "https://cdn.pixabay.com/photo/2023/07/20/19/42/flower-8140215_1280.jpg"},
-    {"name": "6", "image": "https://images.pexels.com/photos/68507/spring-flowers-flowers-collage-floral-68507.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"},
-    {"name": "7", "image": "https://cdn.pixabay.com/photo/2023/07/20/19/42/flower-8140215_1280.jpg"},
-    {"name": "8", "image": "https://images.pexels.com/photos/68507/spring-flowers-flowers-collage-floral-68507.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"},
-    {"name": "9", "image": "https://images.pexels.com/photos/68507/spring-flowers-flowers-collage-floral-68507.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"},
-    {"name": "10", "image": "https://cdn.pixabay.com/photo/2023/07/20/19/42/flower-8140215_1280.jpg"}
-] # 12개
-
+    {"name": os.path.splitext(img)[0], "image": f"{image_folder}/{img}"}
+    for img in image_files
+]
 
 # 예시 라운드 수 선택 
-round_num = 4  # 초기 라운드 (4강)
+round_num = st.session_state.round 
 
 
 
