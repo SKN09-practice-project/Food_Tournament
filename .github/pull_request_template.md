@@ -1,11 +1,9 @@
----
 name: PULL_REQUEST_TEMPLATE
 about: PR 템플릿
 title: ''
 labels: ''
 assignees: pprain1999
 
----
 
 ## #️⃣연관된 이슈
 > ex) #이슈번호, #이슈번호
