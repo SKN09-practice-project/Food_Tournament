@@ -1,18 +1,26 @@
 {
-  "떡볶이": {
-    "count": 26,
-    "image_url": "./img/떡볶이.png"
+  "닭갈비": {
+    "count": 2,
+    "image_url": "food_images/닭갈비.jpg"
   },
-  "치킨": {
-    "count": 3,
-    "image_url": "./img/치킨.png"
-  },
-  "피자": {
+  "파스타": {
     "count": 1,
-    "image_url": "./img/피자.png"
+    "image_url": "food_images/파스타.jpg"
   },
-  "삼겹살": {
-    "count": 5,
-    "image_url": "./img/삼겹살.png"
+  "쌀국수": {
+    "count": 1,
+    "image_url": "food_images/쌀국수.jpg"
+  },
+  "오징어볶음": {
+    "count": 1,
+    "image_url": "food_images/오징어볶음.jpg"
+  },
+  "나시고랭": {
+    "count": 1,
+    "image_url": "food_images/나시고랭.jpg"
+  },
+  "그린 커리": {
+    "count": 1,
+    "image_url": "food_images/그린 커리.jpg"
   }
 }
